@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>crt-post-md</title>
+  <link rel="stylesheet" href="../assets/css/style.css" />
+</head>
+<body>
+  <nav class="nav-bar">
+    <div class="nav-inner">
+      <div class="brand">mongTang</div>
+      <div class="nav-links">
+        <a href="../index.html">홈</a>
+        <a href="index.html">글 목록</a>
+        <a href="../contact.html">문의</a>
+        <a id="lang-toggle" href="#" aria-label="언어 전환">🇺🇸</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container">
+    <article class="doc">
+      <div class="doc-header">
+        <div class="doc-title">crt-post-md</div>
+        <div class="doc-meta">
+          <div><span class="label">등록일</span> 2026-02-23</div>
+        </div>
+      </div>
+      <div class="doc-body">
+        <p>새글을 추가하는방법</p>
+<p>PS D:\my_Work\workspace\use_AI> python scripts/new_post.py posts/crt-post-md</p>
+<p>PS D:\my_Work\workspace\use_AI> = 작업경로</p>
+<p>python scripts/new_post.py posts/ = 파이썬 명령(ports/ = 폴더)</p>
+<p>crt-post-md = 파일명(.md)</p>
+<p>*파일명에 .md 를 생략해도 .md가 붙는다. 본래는 .md를 붙여야함.</p>
+<p>내용과 본문을 작성후 파이썬을 구동한다</p>
+<p>python scripts/generate_post.py posts_md/새글이름.md</p>
+      </div>
+    </article>
+
+    <section class="card">
+      <h2>댓글</h2>
+      <div id="utterances"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p>© 2026 My Hobby</p>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js?v=20260223"></script>
+  <!-- Utterances 스크립트는 main.js에서 주입합니다. -->
+</body>
+</html>
