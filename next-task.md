@@ -1,6 +1,6 @@
 ﻿# next-task.md
 
-업데이트 일시: 2026-02-23
+업데이트 일시: 2026-02-24
 프로젝트: use_AI
 
 ## PROJECT_DIRECTION
@@ -44,7 +44,7 @@
 ## RUNBOOK (실행 명령 모음)
 ### 1) 로컬 서버 실행 (필수)
 ```powershell
-cd d:\my_Work\workspace\use_AI
+cd d:\my_Work\workspace\ai-notes
 python -m http.server 8000
 ```
 접속: `http://127.0.0.1:8000/index.html`
@@ -77,7 +77,7 @@ python -m http.server 5500
 ```
 
 ## NEXT_TASK (다음 작업)
-- [x] `contact.html` 이메일 실제값으로 교체
+- [x] `contact.html` 문의 채널 임시 보류 문구 반영
 - [x] `favicon.ico` 추가 및 `<head>` 링크 반영
 - [x] 댓글(utterances) `YOUR_GITHUB_ID/YOUR_REPO` 실제값 반영
 - [x] 영문 상세 페이지(`*-en.html`) 운영 정책 확정
