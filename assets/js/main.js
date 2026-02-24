@@ -5,7 +5,7 @@
 
   var s = document.createElement('script');
   s.src = 'https://utteranc.es/client.js';
-  s.setAttribute('repo', 'YOUR_GITHUB_ID/YOUR_REPO');
+  s.setAttribute('repo', 'mong-Tang/ai-notes');
   s.setAttribute('issue-term', 'pathname');
   s.setAttribute('theme', 'github-light');
   s.crossOrigin = 'anonymous';
