@@ -87,6 +87,36 @@ body {
 .site-header h1 { margin: 0; }
 .subtitle { color: var(--muted); margin-top: 14px; }
 .container { max-width: 980px; margin: 20px auto; padding: 0 18px; }
+
+/* 다크 배경 링크 가독성 */
+.container a,
+.site-footer a,
+article a,
+.doc a {
+  color: #a5d8ff;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1.5px;
+}
+.container a:visited,
+.site-footer a:visited,
+article a:visited,
+.doc a:visited {
+  color: #c4b5fd;
+}
+.container a:hover,
+.site-footer a:hover,
+article a:hover,
+.doc a:hover {
+  color: #e0f2fe;
+}
+.container a:focus-visible,
+.site-footer a:focus-visible,
+article a:focus-visible,
+.doc a:focus-visible {
+  outline: 2px solid #7dd3fc;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
 .card {
   background: linear-gradient(180deg, rgba(18,24,41,0.95), rgba(18,24,41,0.7));
   padding: 16px 20px;
