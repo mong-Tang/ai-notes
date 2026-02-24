@@ -305,7 +305,7 @@ article code {
 /* 문서 요약 바 (헤더와 본문 사이) */
 .doc-summary-bridge {
   max-width: 760px;
-  margin: 0 auto 14px;
+  margin: 0 auto 7px;
   padding: 8px 12px;
   border: 1px solid rgba(255,255,255,0.12);
   border-radius: 10px;
@@ -323,6 +323,11 @@ article code {
   font-weight: 600;
 }
 
+/* 요약바가 있을 때는 본문 카드 상단 마진 제거 (시각 간격 과다 방지) */
+.doc-summary-bridge + .doc {
+  margin-top: 0;
+}
+
 /* 긴 텍스트/URL로 인한 넘침 방지 */
 .doc-body p,
 .post-title,
@@ -333,7 +338,15 @@ article code {
 /* 모바일 기본 대응 */
 @media (max-width: 768px) {
   body {
-    padding-top: 88px;
+    padding-top: 62px;
+  }
+
+  .site-header {
+    padding: 24px 0 12px;
+  }
+
+  .header-inner {
+    padding: 0 14px;
   }
 
   .nav-inner {
@@ -341,7 +354,7 @@ article code {
     align-items: center;
     justify-content: space-between;
     gap: 10px;
-    padding: 10px 14px;
+    padding: 8px 14px;
   }
 
   .nav-links {
@@ -398,11 +411,37 @@ article code {
   }
 
   .doc {
+    margin-top: 14px;
     padding: 16px 14px;
   }
 
   .doc-header {
     padding-top: 8px;
     margin-bottom: 14px;
+  }
+
+  .container:has(> article.doc) {
+    padding-top: 6px;
+  }
+
+  .doc-summary-bridge {
+    margin-bottom: 2px;
+    padding: 7px 10px;
+  }
+
+  .container > section.card:has(#utterances) {
+    margin-top: 12px;
+  }
+
+  #utterances {
+    margin-top: 12px;
+  }
+
+  .site-footer {
+    padding: 14px 0;
+  }
+
+  .footer-inner {
+    padding: 0 14px;
   }
 }
