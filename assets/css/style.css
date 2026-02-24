@@ -3,14 +3,15 @@
   --card: #121829;
   --text: #e6e9f2;
   --muted: #9aa4bf;
-  --accent: #5b8cff;
-  --accent-2: #22d3ee;
+  --accent: #9fb0d8;
+  --accent-2: #c7d2fe;
   --border: rgba(255,255,255,0.08);
 }
 * { box-sizing: border-box; }
 body {
   margin: 0;
   font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+  line-height: 1.55;
   background: radial-gradient(1200px 600px at 10% -10%, #1a2140 0%, transparent 60%),
               radial-gradient(1000px 500px at 90% 10%, #0f1b3f 0%, transparent 55%),
               var(--bg);
@@ -49,7 +50,7 @@ body {
 .nav-links a {
   text-decoration: none;
   color: var(--accent);
-  font-weight: 600;
+  font-weight: 550;
 }
 .nav-links #lang-toggle {
   font-size: 1.1rem;
@@ -57,7 +58,7 @@ body {
 }
 .nav-links a:hover { color: var(--accent-2); }
 .site-header {
-  padding: 16px 0;
+  padding: 18px 0;
   background: rgba(18, 24, 41, 0.75);
   border-bottom: 1px solid var(--border);
 }
@@ -68,24 +69,24 @@ body {
 }
 .site-header h1 { margin: 0; }
 .subtitle { color: var(--muted); margin-top: 4px; }
-.container { max-width: 980px; margin: 22px auto; padding: 0 18px; }
+.container { max-width: 980px; margin: 20px auto; padding: 0 18px; }
 .card {
   background: linear-gradient(180deg, rgba(18,24,41,0.95), rgba(18,24,41,0.7));
-  padding: 18px 22px;
-  border-radius: 12px;
+  padding: 16px 20px;
+  border-radius: 14px;
   border: 1px solid var(--border);
-  box-shadow: 0 6px 24px rgba(0,0,0,0.35);
-  margin-bottom: 18px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.28);
+  margin-bottom: 14px;
 }
-.card h2 { margin-top: 0; }
+.card h2 { margin: 0 0 8px; }
 .post-header {
   display: grid;
   grid-template-columns: minmax(0, 1.2fr) minmax(0, 2.4fr) auto;
-  gap: 16px;
-  padding: 6px 6px;
+  gap: 14px;
+  padding: 6px 8px;
   margin-bottom: 6px;
-  font-weight: 600;
-  font-size: 0.9rem;
+  font-weight: 550;
+  font-size: 0.86rem;
   color: var(--muted);
 }
 .post-header span:nth-child(3) { text-align: right; }
@@ -93,12 +94,14 @@ body {
 .post-row {
   display: grid;
   grid-template-columns: minmax(0, 1.2fr) minmax(0, 2.4fr) auto;
-  gap: 16px;
+  gap: 14px;
   align-items: center;
-  padding: 6px 6px;
-  border-bottom: 1px dashed var(--border);
+  padding: 8px 8px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
   line-height: 1.3;
   text-decoration: none;
+  border-radius: 8px;
+  transition: background-color .18s ease, color .18s ease;
 }
 .post-row:last-child { border-bottom: none; }
 .post-row > span,
@@ -107,7 +110,8 @@ body {
 }
 .post-title {
   color: var(--text);
-  font-weight: 600;
+  font-weight: 550;
+  font-size: 0.98rem;
   display: block;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -115,26 +119,26 @@ body {
 }
 .post-summary {
   color: var(--muted);
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 .post-meta {
   color: var(--muted);
-  font-size: 0.9rem;
+  font-size: 0.86rem;
   white-space: nowrap;
   text-align: right;
   justify-self: end;
 }
 .post-row:hover {
-  background: #e6e9f2;
-  color: #0b0f1a;
+  background: rgba(159,176,216,0.14);
+  color: var(--text);
 }
 .post-row:hover .post-summary,
 .post-row:hover .post-meta,
 .post-row:hover .post-title {
-  color: #0b0f1a;
+  color: var(--text);
 }
 
 @media (hover: none) {
@@ -166,14 +170,14 @@ article pre {
 article code {
   color: #e6e9f2;
   font-family: Consolas, "Courier New", monospace;
-  font-size: 0.9rem;
+  font-size: 0.86rem;
 }
 
 .doc {
   background: #f4f6fb;
   color: #111;
   border: 1px solid #cfd6e4;
-  border-radius: 12px;
+  border-radius: 14px;
   padding: 20px 48px;
   box-shadow: 0 6px 16px rgba(0,0,0,0.12);
 }
@@ -192,7 +196,7 @@ article code {
   display: flex;
   flex-direction: column;
   gap: 0;
-  font-size: 0.9rem;
+  font-size: 0.86rem;
   color: #333;
 }
 .doc-meta .label {
