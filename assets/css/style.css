@@ -188,6 +188,16 @@ article a:focus-visible,
   color: var(--text);
 }
 
+/* 방문한 글(읽은 글) 시각 구분 */
+.post-row:visited .post-title { color: #c4b5fd; }
+.post-row:visited .post-summary,
+.post-row:visited .post-meta { color: #9f93d6; }
+
+/* hover 시에도 방문 색 유지 */
+.post-row:visited:hover .post-title { color: #d1c4ff; }
+.post-row:visited:hover .post-summary,
+.post-row:visited:hover .post-meta { color: #afa3df; }
+
 @media (hover: none) {
   .post-row:hover {
     background: transparent;
@@ -223,21 +233,24 @@ article code {
 .doc {
   background: #f4f6fb;
   color: #111;
+  font-size: 15px;
+  max-width: 760px;
+  margin: 28px auto 0;
   border: 1px solid #cfd6e4;
   border-radius: 14px;
-  padding: 20px 48px;
+  padding: 34px 28px 40px;
   box-shadow: 0 6px 16px rgba(0,0,0,0.12);
 }
 .doc-header {
   border-bottom: 2px solid #9aa4bf;
-  padding-top: 24px;
-  padding-bottom: 12px;
-  margin-bottom: 20px;
+  padding-top: 18px;
+  padding-bottom: 18px;
+  margin-bottom: 28px;
 }
 .doc-title {
   font-size: 1.4rem;
   font-weight: 700;
-  margin-bottom: 12px;
+  margin-bottom: 16px;
 }
 .doc-meta {
   display: flex;
@@ -263,9 +276,51 @@ article code {
   margin-bottom: 6px;
 }
 .doc-body p {
+  font-size: 0.95rem;
   line-height: 1.35;
   color: #222;
   margin: 4px 0 8px;
+}
+.doc-body {
+  padding-bottom: 10px;
+}
+
+/* 댓글 영역 정렬: 문서 폭과 동일 기준 */
+#utterances {
+  max-width: 760px;
+  margin: 18px auto 0;
+}
+
+/* 댓글 카드 자체도 문서 폭과 정렬 */
+.container > section.card:has(#utterances) {
+  max-width: 760px;
+  margin: 18px auto 0;
+}
+
+/* 문서 페이지: 헤더와 본문 카드 간격 확보 */
+.container:has(> article.doc) {
+  padding-top: 44px;
+}
+
+/* 문서 요약 바 (헤더와 본문 사이) */
+.doc-summary-bridge {
+  max-width: 760px;
+  margin: 0 auto 14px;
+  padding: 8px 12px;
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 10px;
+  background: rgba(11, 15, 26, 0.45);
+  color: #c7d2fe;
+  font-size: 0.9rem;
+  line-height: 1.45;
+  font-weight: 600;
+}
+.doc-summary-bridge .label {
+  font-weight: 700;
+  color: #dbeafe;
+}
+.doc-summary-bridge .text {
+  font-weight: 600;
 }
 
 /* 긴 텍스트/URL로 인한 넘침 방지 */

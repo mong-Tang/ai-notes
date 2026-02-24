@@ -76,3 +76,72 @@
       : '한글 페이지 준비 중입니다.');
   });
 })();
+
+// 목록에서 클릭한 글의 요약을 상세 상단에 표시
+(function initPostSummaryBridge() {
+  var STORAGE_KEY = 'postSummaryMapV1';
+
+  function readMap() {
+    try {
+      return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}') || {};
+    } catch (e) {
+      return {};
+    }
+  }
+
+  function writeMap(map) {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(map));
+    } catch (e) {}
+  }
+
+  function clip50(text) {
+    if (!text) return '';
+    return text.length > 50 ? text.slice(0, 50) + '...' : text;
+  }
+
+  // 목록 클릭 시 요약 저장
+  var rows = document.querySelectorAll('.post-row');
+  if (rows.length) {
+    rows.forEach(function (row) {
+      row.addEventListener('click', function () {
+        var href = row.getAttribute('href');
+        var summaryEl = row.querySelector('.post-summary');
+        if (!href || !summaryEl) return;
+
+        var summary = (summaryEl.textContent || '').trim();
+        if (!summary) return;
+
+        var targetPath = new URL(href, window.location.href).pathname;
+        var map = readMap();
+        map[targetPath] = summary;
+        writeMap(map);
+      });
+    });
+  }
+
+  // 상세에서 요약 바 출력
+  var doc = document.querySelector('article.doc');
+  if (!doc) return;
+
+  var map = readMap();
+  var currentPath = window.location.pathname;
+  var summaryText = map[currentPath] || '';
+  var body = summaryText ? clip50(summaryText) : '(요약 없음)';
+
+  var bridge = document.createElement('div');
+  bridge.className = 'doc-summary-bridge';
+
+  var labelEl = document.createElement('span');
+  labelEl.className = 'label';
+  labelEl.textContent = '요약 : ';
+
+  var textEl = document.createElement('span');
+  textEl.className = 'text';
+  textEl.textContent = body;
+
+  bridge.appendChild(labelEl);
+  bridge.appendChild(textEl);
+
+  doc.parentNode.insertBefore(bridge, doc);
+})();
