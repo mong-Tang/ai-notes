@@ -1,7 +1,7 @@
 ﻿# next-task.md
 
 업데이트 일시: 2026-02-24
-프로젝트: use_AI
+프로젝트: ai-notes
 
 ## PROJECT_DIRECTION
 - 이 프로젝트는 "내가 좋아서 하는" 취미 기록용 정적 블로그다.
