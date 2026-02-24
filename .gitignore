@@ -4,6 +4,8 @@ docs/*_extracted.txt
 *todo*.md
 *task*.md
 next-task.md
+*.pdf
+docs/*.pdf
 
 # 향후 비공개 자료 폴더(필요 시 사용)
 private/
