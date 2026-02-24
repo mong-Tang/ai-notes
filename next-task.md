@@ -88,6 +88,17 @@ python -m http.server 5500
   - [x] 카드/목록 시각 밀도 조정
   - [x] 색상 포인트 1차 정리
 
+## TODO (즉시 실행)
+- [ ] 새 글 1건 작성 → HTML 생성 → 배포까지 end-to-end 점검
+- [ ] 모바일 실기기(iOS/Android 각 1회) 최종 확인
+- [ ] 요약바 없는 상세 진입 케이스 확인 (`요약 : (요약 없음)` 표시)
+
+## YOUTUBE_TRACK (운영 흔적/계획)
+- [ ] 채널 컨셉 1문장 정의
+- [ ] 블로그 글 1개 → 3~5분 스크립트 변환 템플릿 확정
+- [ ] 파일 위치 규칙 정의 (`youtube/scripts`, `youtube/assets`, `youtube/logs`)
+- [ ] 1차 테스트 영상 주제 선정 및 체크리스트 작성
+
 ## BACKLOG (보류)
 - 요약/본문 영문 전용 필드(`note_en`, `body_en`) 도입 여부
 - YouTube용 고정 대본 템플릿 세분화
