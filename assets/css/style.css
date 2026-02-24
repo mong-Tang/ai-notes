@@ -75,7 +75,7 @@ body {
   background: rgba(255,255,255,0.08);
 }
 .site-header {
-  padding: 42px 0 20px;
+  padding: 84px 0 20px;
   background: rgba(18, 24, 41, 0.75);
   border-bottom: 1px solid var(--border);
 }
