@@ -58,6 +58,14 @@
       return;
     }
 
+    // 정책(B): 영문 상세 페이지가 없으면 자동번역 임시 fallback 사용
+    if (current === 'ko' && /^https?:/i.test(window.location.href)) {
+      var translated = 'https://translate.google.com/translate?sl=ko&tl=en&u='
+        + encodeURIComponent(window.location.href);
+      window.location.href = translated;
+      return;
+    }
+
     if (fallbackPath && await exists(fallbackPath)) {
       window.location.href = fallbackPath;
       return;

@@ -80,9 +80,9 @@ python -m http.server 5500
 - [ ] `contact.html` 이메일 실제값으로 교체
 - [ ] `favicon.ico` 추가 및 `<head>` 링크 반영
 - [ ] 댓글(utterances) `YOUR_GITHUB_ID/YOUR_REPO` 실제값 반영
-- [ ] 영문 상세 페이지(`*-en.html`) 운영 정책 확정
+- [x] 영문 상세 페이지(`*-en.html`) 운영 정책 확정
   - (A) 수동 작성
-  - (B) 자동번역 임시 fallback
+  - (B) 자동번역 임시 fallback (채택)
 - [ ] 디자인 1차 미세조정(내일)
   - [ ] 타이포/간격 미세조정
   - [ ] 카드/목록 시각 밀도 조정
