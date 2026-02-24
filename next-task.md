@@ -77,9 +77,9 @@ python -m http.server 5500
 ```
 
 ## NEXT_TASK (다음 작업)
-- [ ] `contact.html` 이메일 실제값으로 교체
-- [ ] `favicon.ico` 추가 및 `<head>` 링크 반영
-- [ ] 댓글(utterances) `YOUR_GITHUB_ID/YOUR_REPO` 실제값 반영
+- [x] `contact.html` 이메일 실제값으로 교체
+- [x] `favicon.ico` 추가 및 `<head>` 링크 반영
+- [x] 댓글(utterances) `YOUR_GITHUB_ID/YOUR_REPO` 실제값 반영
 - [x] 영문 상세 페이지(`*-en.html`) 운영 정책 확정
   - (A) 수동 작성
   - (B) 자동번역 임시 fallback (채택)
