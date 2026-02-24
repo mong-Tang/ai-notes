@@ -82,7 +82,7 @@ body {
 .header-inner {
   max-width: 980px;
   margin: 0 auto;
-  padding: 0 18px;
+  padding: 0 38px;
 }
 .site-header h1 { margin: 0; }
 .subtitle { color: var(--muted); margin-top: 14px; }
