@@ -74,6 +74,10 @@ body {
   color: var(--accent-2);
   background: rgba(255,255,255,0.08);
 }
+.nav-links a.active {
+  color: var(--accent-2);
+  background: rgba(255,255,255,0.12);
+}
 .site-header {
   padding: 84px 0 20px;
   background: rgba(18, 24, 41, 0.75);
@@ -86,33 +90,75 @@ body {
 }
 .site-header h1 { margin: 0; }
 .subtitle { color: var(--muted); margin-top: 14px; }
+.about-hero-card {
+  margin-top: 14px;
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 14px;
+  align-items: start;
+  background: linear-gradient(180deg, rgba(18,24,41,0.95), rgba(18,24,41,0.7));
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 10px 12px;
+}
+.about-hero-card img {
+  width: 100%;
+  height: 170px;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.14);
+}
+.about-hero-text p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.5;
+}
+.about-hero-link {
+  display: inline-block;
+  margin-top: 10px;
+  font-weight: 700;
+}
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
+}
+.cta-button {
+  display: inline-block;
+  text-decoration: none;
+  color: #0b0f1a;
+  background: #c7d2fe;
+  font-weight: 700;
+  padding: 8px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(199,210,254,0.5);
+}
+.cta-button:visited {
+  color: #0b0f1a;
+}
+.cta-button.secondary {
+  color: #dbeafe;
+  background: rgba(199,210,254,0.12);
+}
+.cta-button.secondary:visited {
+  color: #dbeafe;
+}
 .container { max-width: 980px; margin: 20px auto; padding: 0 18px; }
 
-/* 다크 배경 링크 가독성 */
-.container a,
-.site-footer a,
-article a,
-.doc a {
+/* 전역 링크 가독성 */
+a {
   color: #a5d8ff;
   text-underline-offset: 3px;
   text-decoration-thickness: 1.5px;
 }
-.container a:visited,
-.site-footer a:visited,
-article a:visited,
-.doc a:visited {
+a:visited {
   color: #c4b5fd;
 }
-.container a:hover,
-.site-footer a:hover,
-article a:hover,
-.doc a:hover {
+a:hover {
   color: #e0f2fe;
 }
-.container a:focus-visible,
-.site-footer a:focus-visible,
-article a:focus-visible,
-.doc a:focus-visible {
+a:focus-visible {
   outline: 2px solid #7dd3fc;
   outline-offset: 2px;
   border-radius: 4px;
@@ -126,6 +172,47 @@ article a:focus-visible,
   margin-bottom: 14px;
 }
 .card h2 { margin: 0 0 8px; }
+.mini-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+.mini-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 12px;
+}
+.mini-card h3 {
+  margin: 0 0 6px;
+  font-size: 1rem;
+}
+.mini-card p {
+  margin: 0 0 8px;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+.tool-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 6px;
+}
+.status-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+.status-grid > div {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 12px;
+}
+.status-grid p {
+  margin: 6px 0 0;
+  color: var(--muted);
+}
 .post-header {
   display: grid;
   grid-template-columns: minmax(0, 1.2fr) minmax(0, 2.4fr) auto;
@@ -335,6 +422,30 @@ article code {
   overflow-wrap: anywhere;
 }
 
+/* 태블릿/중간 폭 대응 */
+@media (max-width: 960px) {
+  .header-inner {
+    padding: 0 18px;
+  }
+
+  .site-header h1 {
+    font-size: 2.3rem;
+  }
+
+  .about-hero-card {
+    grid-template-columns: 120px 1fr;
+    gap: 12px;
+  }
+
+  .about-hero-card img {
+    height: 150px;
+  }
+
+  .about-hero-text p {
+    font-size: 0.98rem;
+  }
+}
+
 /* 모바일 기본 대응 */
 @media (max-width: 768px) {
   body {
@@ -362,8 +473,15 @@ article code {
     margin-left: auto;
     justify-content: flex-end;
     flex-wrap: nowrap;
+    overflow-x: auto;
     gap: 6px;
     padding: 3px;
+  }
+
+  .nav-links a {
+    white-space: nowrap;
+    font-size: 0.86rem;
+    padding: 5px 8px;
   }
 
   .container {
@@ -373,6 +491,32 @@ article code {
 
   .card {
     padding: 14px 14px;
+  }
+
+  .about-hero-card {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    padding: 10px;
+  }
+
+  .about-hero-card img {
+    width: min(100%, 220px);
+    height: auto;
+    aspect-ratio: 4 / 5;
+  }
+
+  .about-hero-text p {
+    font-size: 1rem;
+    line-height: 1.45;
+  }
+
+  .hero-actions {
+    margin-top: 12px;
+  }
+
+  .mini-grid,
+  .status-grid {
+    grid-template-columns: 1fr;
   }
 
   .post-header {

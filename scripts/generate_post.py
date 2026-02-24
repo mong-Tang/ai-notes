@@ -22,17 +22,7 @@ POST_TEMPLATE = """<!doctype html>
   <link rel=\"stylesheet\" href=\"../assets/css/style.css\" />
 </head>
 <body>
-  <nav class=\"nav-bar\">
-    <div class=\"nav-inner\">
-      <div class=\"brand\">mongTang</div>
-      <div class=\"nav-links\">
-        <a href=\"../index.html\">홈</a>
-        <a href=\"index.html\">글 목록</a>
-        <a href=\"../contact.html\">문의</a>
-        <a id=\"lang-toggle\" href=\"#\" aria-label=\"언어 전환\">🇺🇸</a>
-      </div>
-    </div>
-  </nav>
+  <div id=\"site-nav\" data-base=\"..\"></div>
 
   <main class=\"container\">
     <article class=\"doc\">

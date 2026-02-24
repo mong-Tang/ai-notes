@@ -1,0 +1,13 @@
+# Push 제외(운영 소스/임시 산출물)
+data/tools.json
+docs/*_extracted.txt
+*todo*.md
+*task*.md
+next-task.md
+
+# 향후 비공개 자료 폴더(필요 시 사용)
+private/
+
+# Python cache
+__pycache__/
+*.pyc

@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" href="favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32.png" />
+  <link rel="apple-touch-icon" href="assets/favicon/favicon-180.png" />
+  <title>Tools - mongTang</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+  <div id="site-nav" data-base="."></div>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <h1>mongTang Tools</h1>
+      <p class="subtitle">This page introduces project tools. Source code and releases are managed on GitHub.</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <h2>Tools Overview</h2>
+      <p>The list below shows each tool's purpose and status. Download/version history is managed via GitHub links.</p>
+    </section>
+
+    <section class="card">
+      <h2>Programs / Utilities</h2>
+      <div class="mini-grid">
+        <!-- TOOLS_CARDS_EN_START -->
+<article class="mini-card">
+  <h3>Post Template Generator</h3>
+  <p>Utility for quickly creating new post templates.</p>
+  <p><strong>Status:</strong> In development</p>
+  <div class="tool-links"><a href="https://github.com/mong-Tang/ai-notes/tree/main/scripts/new_post.py" target="_blank" rel="noopener noreferrer">View Source</a></div>
+</article>
+<article class="mini-card">
+  <h3>Markdown → Post Builder</h3>
+  <p>Build tool that converts markdown into post HTML and refreshes indexes.</p>
+  <p><strong>Status:</strong> In development</p>
+  <div class="tool-links"><a href="https://github.com/mong-Tang/ai-notes/tree/main/scripts/generate_post.py" target="_blank" rel="noopener noreferrer">View Source</a></div>
+</article>
+<article class="mini-card">
+  <h3>Post Watcher</h3>
+  <p>Helper tool that watches post changes and automates repetitive tasks.</p>
+  <p><strong>Status:</strong> In development</p>
+  <div class="tool-links"><a href="https://github.com/mong-Tang/ai-notes/tree/main/scripts/watch_posts.py" target="_blank" rel="noopener noreferrer">View Source</a></div>
+</article>
+<article class="mini-card">
+  <h3>d_View</h3>
+  <p>리더기</p>
+  <p><strong>Status:</strong> Released</p>
+  <div class="tool-links"><a href="https://github.com/mong-Tang/d_View/releases/download/v0.1.0/mongTang-win32-x64.zip" target="_blank" rel="noopener noreferrer">Download</a> <a href="https://github.com/mong-Tang/d_View" target="_blank" rel="noopener noreferrer">View Repository</a></div>
+</article>
+        <!-- TOOLS_CARDS_EN_END -->
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Related Links</h2>
+      <ul>
+        <li><a href="posts/index.html">Lab posts</a></li>
+        <li><a href="index-en.html#youtube">YouTube roadmap</a></li>
+        <li><a href="about-en.html">Project direction</a></li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>Update Memo</h2>
+      <p>Add new tool entries to <code>data/tools.json</code>, then run:</p>
+      <pre><code>python scripts/generate_tools.py</code></pre>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p>© 2026 My Hobby</p>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js?v=20260223"></script>
+</body>
+</html>

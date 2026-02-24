@@ -1,4 +1,51 @@
-﻿// Utterances 삽입 (GitHub repo 설정 필요)
+// Shared navigation injection (no frames)
+(function initSharedNav() {
+  var mount = document.getElementById('site-nav');
+  if (!mount) return;
+
+  var base = mount.getAttribute('data-base') || '.';
+  var isEn = (document.documentElement.lang || '').toLowerCase().startsWith('en');
+  var homePath = isEn ? 'index-en.html' : 'index.html';
+  var aboutPath = isEn ? 'about-en.html' : 'about.html';
+  var toolsPath = isEn ? 'tools-en.html' : 'tools.html';
+  var labels = isEn
+    ? { home: 'Home', lab: 'Lab', tools: 'Tools', youtube: 'YouTube', about: 'About', toggle: 'Language toggle', flag: '\uD83C\uDDF0\uD83C\uDDF7' }
+    : { home: 'Home', lab: 'Lab', tools: 'Tools', youtube: 'YouTube', about: 'About', toggle: '\uC5B8\uC5B4 \uC804\uD658', flag: '\uD83C\uDDFA\uD83C\uDDF8' };
+
+  function href(path) {
+    return base + '/' + path;
+  }
+
+  mount.outerHTML =
+    '<nav class="nav-bar">' +
+      '<div class="nav-inner">' +
+        '<div class="brand">mongTang</div>' +
+        '<div class="nav-links">' +
+          '<a href="' + href(homePath) + '" data-nav-key="home">' + labels.home + '</a>' +
+          '<a href="' + href('posts/index.html') + '" data-nav-key="lab">' + labels.lab + '</a>' +
+          '<a href="' + href(toolsPath) + '" data-nav-key="tools">' + labels.tools + '</a>' +
+          '<a href="' + href(homePath + '#youtube') + '" data-nav-key="youtube">' + labels.youtube + '</a>' +
+          '<a href="' + href(aboutPath) + '" data-nav-key="about">' + labels.about + '</a>' +
+          '<a id="lang-toggle" href="#" aria-label="' + labels.toggle + '">' + labels.flag + '</a>' +
+        '</div>' +
+      '</div>' +
+    '</nav>';
+
+  var path = window.location.pathname;
+  var navKey = 'home';
+  if (/\/posts\/index\.html$/i.test(path) || /\/posts\/.+\.html$/i.test(path)) {
+    navKey = 'lab';
+  } else if (/\/tools(?:-en)?\.html$/i.test(path)) {
+    navKey = 'tools';
+  } else if (/\/about(?:-en)?\.html$/i.test(path) || /\/contact(?:-en)?\.html$/i.test(path)) {
+    navKey = 'about';
+  }
+
+  var active = document.querySelector('.nav-links a[data-nav-key="' + navKey + '"]');
+  if (active) active.classList.add('active');
+})();
+
+// Utterances ??
 (function initUtterances(){
   var container = document.getElementById('utterances');
   if (!container) return;
@@ -13,7 +60,7 @@
   container.appendChild(s);
 })();
 
-// 언어 토글(ko/en 파일 전환)
+// ?? ??(ko/en ?? ??)
 (function initLangToggle() {
   var toggle = document.getElementById('lang-toggle');
   if (!toggle) return;
@@ -27,14 +74,14 @@
   var fallbackPath = null;
 
   if (current === 'ko') {
-    toggle.textContent = '🇺🇸';
+    toggle.textContent = '\uD83C\uDDFA\uD83C\uDDF8';
     if (isKo) {
       targetPath = path.replace(/-ko\.html$/i, '-en.html');
     } else if (/\.html$/i.test(path)) {
       targetPath = path.replace(/\.html$/i, '-en.html');
     }
   } else {
-    toggle.textContent = '🇰🇷';
+    toggle.textContent = '\uD83C\uDDF0\uD83C\uDDF7';
     targetPath = path.replace(/-en\.html$/i, '-ko.html');
     fallbackPath = path.replace(/-en\.html$/i, '.html');
   }
@@ -58,7 +105,7 @@
       return;
     }
 
-    // 정책(B): 영문 상세 페이지가 없으면 자동번역 임시 fallback 사용
+    // ??(B): ?? ?? ???? ??? ???? ?? fallback ??
     if (current === 'ko' && /^https?:/i.test(window.location.href)) {
       var translated = 'https://translate.google.com/translate?sl=ko&tl=en&u='
         + encodeURIComponent(window.location.href);
@@ -72,12 +119,12 @@
     }
 
     alert(current === 'ko'
-      ? '영문 페이지 준비 중입니다.'
-      : '한글 페이지 준비 중입니다.');
+      ? '\uC601\uBB38 \uD398\uC774\uC9C0 \uC900\uBE44 \uC911\uC785\uB2C8\uB2E4.'
+      : '\uD55C\uAE00 \uD398\uC774\uC9C0 \uC900\uBE44 \uC911\uC785\uB2C8\uB2E4.');
   });
 })();
 
-// 목록에서 클릭한 글의 요약을 상세 상단에 표시
+// ???? ??? ?? ??? ?? ??? ??
 (function initPostSummaryBridge() {
   var STORAGE_KEY = 'postSummaryMapV1';
 
@@ -100,7 +147,7 @@
     return text.length > 50 ? text.slice(0, 50) + '...' : text;
   }
 
-  // 목록 클릭 시 요약 저장
+  // ?? ?? ? ?? ??
   var rows = document.querySelectorAll('.post-row');
   if (rows.length) {
     rows.forEach(function (row) {
@@ -120,21 +167,21 @@
     });
   }
 
-  // 상세에서 요약 바 출력
+  // ???? ?? ? ??
   var doc = document.querySelector('article.doc');
   if (!doc) return;
 
   var map = readMap();
   var currentPath = window.location.pathname;
   var summaryText = map[currentPath] || '';
-  var body = summaryText ? clip50(summaryText) : '(요약 없음)';
+  var body = summaryText ? clip50(summaryText) : '(?? ??)';
 
   var bridge = document.createElement('div');
   bridge.className = 'doc-summary-bridge';
 
   var labelEl = document.createElement('span');
   labelEl.className = 'label';
-  labelEl.textContent = '요약 : ';
+  labelEl.textContent = '?? : ';
 
   var textEl = document.createElement('span');
   textEl.className = 'text';
