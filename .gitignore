@@ -15,3 +15,10 @@ __pycache__/
 *.pyc
 !content/ai-weekly-todo.md
 scripts/run.ps1
+
+# Local push exceptions
+scripts/doc.md
+scripts/post_new.py
+scripts/tool_add.py
+scripts/youtube_add.py
+scripts/youtube_generate.py
