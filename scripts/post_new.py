@@ -12,7 +12,7 @@ body:
 
 def main():
     if len(sys.argv) < 2:
-        print("Usage: python scripts/new_post.py posts_md/your-file-name")
+        print("Usage: python scripts/post_new.py posts_md/your-file-name")
         sys.exit(1)
 
     out_path = Path(sys.argv[1]).resolve()
@@ -28,7 +28,7 @@ def main():
     out_path.write_text(content, encoding="utf-8")
     print(f"Created: {out_path}")
     print("Tip: 작성 후 아래 명령으로 반영하세요.")
-    print(f"  python scripts/generate_post.py {out_path}")
+    print(f"  python scripts/post_generate.py {out_path}")
 
 
 if __name__ == "__main__":

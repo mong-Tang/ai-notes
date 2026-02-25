@@ -4,7 +4,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 POSTS_MD = ROOT / "posts_md"
-GEN = ROOT / "scripts" / "generate_post.py"
+GEN = ROOT / "scripts" / "post_generate.py"
 
 
 def snapshot():

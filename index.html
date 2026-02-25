@@ -23,8 +23,8 @@
         </div>
       </section>
       <div class="hero-actions">
-        <a class="cta-button" href="#latest">최신 실험 보기</a>
-        <a class="cta-button secondary" href="tools.html">프로젝트 툴 보기</a>
+        <a class="cta-button cta-compact" href="#latest">최근 실험 보기</a>
+        <a class="cta-button cta-compact" href="tools.html">프로젝트 툴 보기</a>
       </div>
     </div>
   </header>
@@ -40,24 +40,24 @@
       <ul class="post-list">
         <!-- POSTS_LATEST_START -->
 <li>
+  <a class="post-row" href="posts/test.html">
+    <span class="post-title">test</span>
+    <span class="post-summary">AI 블로그 운영을 위한 기본 템플릿을 실제로 적용해봤다.</span>
+    <span class="post-meta">2026-02-25</span>
+  </a>
+</li>
+<li>
+  <a class="post-row" href="posts/crt-post-md.html">
+    <span class="post-title">crt-post-md</span>
+    <span class="post-summary"></span>
+    <span class="post-meta">2026-02-25</span>
+  </a>
+</li>
+<li>
   <a class="post-row" href="posts/no-summary-test.html">
     <span class="post-title">no-summary-test</span>
     <span class="post-summary"></span>
     <span class="post-meta">2026-02-24</span>
-  </a>
-</li>
-<li>
-  <a class="post-row" href="posts/ai-log-05.html">
-    <span class="post-title">ai-log-05</span>
-    <span class="post-summary">[실험 05] 한 줄 요약을 작성하세요.</span>
-    <span class="post-meta">2026-02-23</span>
-  </a>
-</li>
-<li>
-  <a class="post-row" href="posts/ai-log-04.html">
-    <span class="post-title">ai-log-04</span>
-    <span class="post-summary">[실험 04] 한 줄 요약을 작성하세요.</span>
-    <span class="post-meta">2026-02-23</span>
   </a>
 </li>
 <!-- POSTS_LATEST_END -->
@@ -67,33 +67,55 @@
     <section id="tools" class="card">
       <h2>Tools 하이라이트</h2>
       <div class="mini-grid">
-        <article class="mini-card">
-          <h3>실험 자동화 스크립트</h3>
-          <p>포스트 생성/변환 자동화 스크립트를 정리해 재사용합니다.</p>
-          <a href="scripts/">스크립트 보기</a>
-        </article>
-        <article class="mini-card">
-          <h3>포스트 생성기</h3>
-          <p>템플릿 기반으로 실험 기록을 빠르게 생성합니다.</p>
-          <a href="posts/index.html">결과 포스트 보기</a>
-        </article>
-        <article class="mini-card">
-          <h3>업데이트 로그</h3>
-          <p>무엇을 바꿨는지, 왜 바꿨는지를 짧게 남깁니다.</p>
-          <a href="next-task.md">운영 로그 보기</a>
-        </article>
+        <!-- HOME_TOOLS_HIGHLIGHT_START -->
+<article class="mini-card">
+  <h3>d_View</h3>
+  <p>리더기</p>
+  <div class="tool-links"><a href="https://github.com/mong-Tang/d_View/releases/download/v0.1.0/mongTang-win32-x64.zip" target="_blank" rel="noopener noreferrer">다운로드</a> <a href="https://github.com/mong-Tang/d_View/releases" target="_blank" rel="noopener noreferrer">출처 보기</a></div>
+</article>
+<article class="mini-card">
+  <h3>Post Watcher</h3>
+  <p>포스트 파일 변경을 감시해 반복 생성 작업을 자동화하는 보조 도구입니다.</p>
+  <div class="tool-links"><a href="https://github.com/mong-Tang/ai-notes/tree/main/scripts/watch_posts.py" target="_blank" rel="noopener noreferrer">소스 보기</a></div>
+</article>
+<article class="mini-card">
+  <h3>Markdown → Post Builder</h3>
+  <p>마크다운 기록을 HTML 포스트로 변환하고 목록을 갱신하는 빌더입니다.</p>
+  <div class="tool-links"><a href="https://github.com/mong-Tang/ai-notes/tree/main/scripts/post_generate.py" target="_blank" rel="noopener noreferrer">소스 보기</a></div>
+</article>
+        <!-- HOME_TOOLS_HIGHLIGHT_END -->
       </div>
-      <p><a href="tools.html">전체 Tools 보기 →</a></p>
+      <p class="tools-more-wrap">
+        <a class="cta-button cta-compact" href="tools.html">전체 Tools 보기</a>
+      </p>
     </section>
 
     <section id="youtube" class="card">
       <h2>YouTube (준비중)</h2>
-      <p>실험/도구 자료가 충분히 쌓이면 채널을 시작할 예정입니다. 블로그 글 1개를 3~5분 영상 스크립트로 변환하는 흐름을 기준으로 준비합니다.</p>
-      <ul>
-        <li>예정 콘텐츠: 실험 결과 요약</li>
-        <li>예정 콘텐츠: Tool 사용기/제작기</li>
-        <li>예정 콘텐츠: 실패 사례 회고</li>
-      </ul>
+      <p>최신 영상부터 정리합니다.</p>
+      <div class="youtube-grid">
+        <!-- HOME_YOUTUBE_CARDS_START -->
+<article class="mini-card">
+  <a href="https://www.youtube.com/watch?v=_q8s93klams&amp;list=RD_q8s93klams&amp;start_radio=1" target="_blank" rel="noopener noreferrer">
+    <span class="youtube-thumb-wrap">
+      <img class="youtube-thumb" src="assets/img/sample.jpg" alt="영상 1 썸네일" />
+    </span>
+  </a>
+  <p><a href="https://www.youtube.com/watch?v=_q8s93klams&amp;list=RD_q8s93klams&amp;start_radio=1" target="_blank" rel="noopener noreferrer">Sultans Of Swing</a></p>
+</article>
+<article class="mini-card">
+  <a href="https://www.youtube.com/watch?v=PiKz3hOjjs4" target="_blank" rel="noopener noreferrer">
+    <span class="youtube-thumb-wrap">
+      <img class="youtube-thumb" src="assets/img/sample2.jpg" alt="영상 2 썸네일" />
+    </span>
+  </a>
+  <p><a href="https://www.youtube.com/watch?v=PiKz3hOjjs4" target="_blank" rel="noopener noreferrer">Goodbye - bye</a></p>
+</article>
+      <!-- HOME_YOUTUBE_CARDS_END -->
+      </div>
+      <p class="tools-more-wrap">
+        <a class="cta-button cta-compact" href="youtube.html">YouTube 페이지 보기</a>
+      </p>
     </section>
 
     <section class="card">
@@ -108,7 +130,7 @@
 
   <footer class="site-footer">
     <div class="footer-inner">
-      <p>© 2026 <a href="https://github.com/mong-Tang/ai-notes" target="_blank" rel="noopener noreferrer">My Hobby</a></p>
+      <p>© 2026 <a href="https://github.com/mong-Tang" target="_blank" rel="noopener noreferrer">My Hobby</a></p>
     </div>
   </footer>
   <script src="assets/js/main.js?v=20260223"></script>

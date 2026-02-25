@@ -8,6 +8,7 @@
   var homePath = isEn ? 'index-en.html' : 'index.html';
   var aboutPath = isEn ? 'about-en.html' : 'about.html';
   var toolsPath = isEn ? 'tools-en.html' : 'tools.html';
+  var youtubePath = 'youtube.html';
   var labels = isEn
     ? { home: 'Home', lab: 'Lab', tools: 'Tools', youtube: 'YouTube', about: 'About', toggle: 'Language toggle', flag: '\uD83C\uDDF0\uD83C\uDDF7' }
     : { home: 'Home', lab: 'Lab', tools: 'Tools', youtube: 'YouTube', about: 'About', toggle: '\uC5B8\uC5B4 \uC804\uD658', flag: '\uD83C\uDDFA\uD83C\uDDF8' };
@@ -22,9 +23,9 @@
         '<div class="brand">mongTang</div>' +
         '<div class="nav-links">' +
           '<a href="' + href(homePath) + '" data-nav-key="home">' + labels.home + '</a>' +
-          '<a href="' + href('posts/index.html') + '" data-nav-key="lab">' + labels.lab + '</a>' +
+          '<a href="' + href('posts/labs.html') + '" data-nav-key="lab">' + labels.lab + '</a>' +
           '<a href="' + href(toolsPath) + '" data-nav-key="tools">' + labels.tools + '</a>' +
-          '<a href="' + href(homePath + '#youtube') + '" data-nav-key="youtube">' + labels.youtube + '</a>' +
+          '<a href="' + href(youtubePath) + '" data-nav-key="youtube">' + labels.youtube + '</a>' +
           '<a href="' + href(aboutPath) + '" data-nav-key="about">' + labels.about + '</a>' +
           '<a id="lang-toggle" href="#" aria-label="' + labels.toggle + '">' + labels.flag + '</a>' +
         '</div>' +
@@ -33,10 +34,12 @@
 
   var path = window.location.pathname;
   var navKey = 'home';
-  if (/\/posts\/index\.html$/i.test(path) || /\/posts\/.+\.html$/i.test(path)) {
+  if (/\/posts\/labs\.html$/i.test(path) || /\/posts\/.+\.html$/i.test(path)) {
     navKey = 'lab';
   } else if (/\/tools(?:-en)?\.html$/i.test(path)) {
     navKey = 'tools';
+  } else if (/\/youtube(?:-en)?\.html$/i.test(path)) {
+    navKey = 'youtube';
   } else if (/\/about(?:-en)?\.html$/i.test(path) || /\/contact(?:-en)?\.html$/i.test(path)) {
     navKey = 'about';
   }

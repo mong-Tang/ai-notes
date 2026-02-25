@@ -18,7 +18,7 @@ if (!(Test-Path $mdPath)) {
   exit 1
 }
 
-python scripts/generate_post.py $mdPath
+python scripts/post_generate.py $mdPath
 if ($LASTEXITCODE -ne 0) {
   Write-Host "HTML 생성 명령이 실패했습니다."
   exit 1
@@ -37,7 +37,7 @@ if ([string]::IsNullOrWhiteSpace($msg)) {
 # index-en.html은 현재 생성 대상이 아니라 제외
 # 필요 시 수동으로 포함 가능
 
-git add $mdPath $htmlPath posts/index.html index.html
+git add $mdPath $htmlPath posts/labs.html index.html
 if ($LASTEXITCODE -ne 0) {
   Write-Host "git add 실패"
   exit 1

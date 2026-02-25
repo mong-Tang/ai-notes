@@ -13,3 +13,5 @@ private/
 # Python cache
 __pycache__/
 *.pyc
+!content/ai-weekly-todo.md
+scripts/run.ps1

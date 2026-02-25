@@ -8,7 +8,7 @@ from urllib.request import Request, urlopen
 
 ROOT = Path(__file__).resolve().parents[1]
 TOOLS_JSON = ROOT / "data" / "tools.json"
-GENERATE_SCRIPT = ROOT / "scripts" / "generate_tools.py"
+GENERATE_SCRIPT = ROOT / "scripts" / "tool_generate.py"
 
 
 def ask(prompt: str, default: str | None = None, required: bool = False) -> str:
@@ -166,7 +166,7 @@ def prompt_user_release(repo: str) -> tuple[str, str]:
 
 def prompt_dev_path(repo: str) -> str:
     while True:
-        path = ask("소스 path (예: scripts/new_post.py)", required=True).strip("/")
+        path = ask("소스 path (예: scripts/post_new.py)", required=True).strip("/")
         if github_path_exists(repo, path):
             return path
         print(f"path를 찾을 수 없습니다: {path}")

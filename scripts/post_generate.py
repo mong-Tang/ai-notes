@@ -8,7 +8,7 @@ POSTS_MD = ROOT / "posts_md"
 POSTS_HTML = ROOT / "posts"
 INDEX_HTML = ROOT / "index.html"
 INDEX_EN_HTML = ROOT / "index-en.html"
-POSTS_INDEX_HTML = POSTS_HTML / "index.html"
+POSTS_INDEX_HTML = POSTS_HTML / "labs.html"
 
 POST_TEMPLATE = """<!doctype html>
 <html lang=\"ko\">
@@ -175,7 +175,7 @@ def has_content(md_text: str) -> bool:
 
 def main():
     if len(sys.argv) < 2:
-        print("Usage: python scripts/generate_post.py posts_md/your-file-name.md")
+        print("Usage: python scripts/post_generate.py posts_md/your-file-name.md")
         sys.exit(1)
 
     md_path = Path(sys.argv[1]).resolve()
@@ -231,7 +231,7 @@ def main():
         INDEX_EN_HTML.write_text(index_en_html, encoding="utf-8")
 
     print(f"Generated: {out_html}")
-    print("Updated posts/index.html and index.html (등록순)")
+    print("Updated posts/labs.html and index.html (등록순)")
 
 
 if __name__ == "__main__":

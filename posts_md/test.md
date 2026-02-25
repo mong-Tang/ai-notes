@@ -7,7 +7,7 @@ body(본문):
 # 실험 정보
 - 날짜: 2026-02-23
 - AI/모델: Codex 대화형 코딩 보조
-- 도구/환경: VS Code, Python 스크립트(`generate_post.py`)
+- 도구/환경: VS Code, Python 스크립트(`post_generate.py`)
 
 # 입력
 - 핵심 지시: "템플릿을 샘플 글로 채워서 바로 쓸 수 있게 만들어줘."
@@ -17,7 +17,7 @@ body(본문):
 - 판정: 가능
 
 # 검증
-- 확인 방법: `python scripts/generate_post.py posts_md/test.md` 실행 후 목록/본문 확인
+- 확인 방법: `python scripts/post_generate.py posts_md/test.md` 실행 후 목록/본문 확인
 - 검증 결과: 요약이 목록에 반영되고, 본문 섹션 구조가 유지된다.
 
 # 한계

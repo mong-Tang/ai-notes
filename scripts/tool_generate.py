@@ -8,6 +8,7 @@ ROOT = Path(__file__).resolve().parents[1]
 DATA_FILE = ROOT / "data" / "tools.json"
 TOOLS_KO_HTML = ROOT / "tools.html"
 TOOLS_EN_HTML = ROOT / "tools-en.html"
+INDEX_KO_HTML = ROOT / "index.html"
 GITHUB = "https://github.com"
 
 
@@ -31,7 +32,7 @@ def primary_url(tool: dict) -> str:
 
 def secondary_url(tool: dict) -> str | None:
     if detect_audience(tool) == "user":
-        return f"{GITHUB}/{tool['repo']}"
+        return f"{GITHUB}/{tool['repo']}/releases"
     return None
 
 
@@ -82,6 +83,22 @@ def build_card(tool: dict, locale: str) -> str:
     )
 
 
+def build_home_highlight_card(tool: dict, locale: str) -> str:
+    desc = tool.get(f"desc_{locale}") or tool.get("desc_ko", tool["name"])
+    return (
+        "<article class=\"mini-card\">\n"
+        f"  <h3>{html.escape(tool['name'])}</h3>\n"
+        f"  <p>{html.escape(desc)}</p>\n"
+        + build_links(
+            primary_url(tool),
+            primary_label(tool, locale),
+            secondary_url(tool),
+            secondary_label(locale),
+        )
+        + "</article>"
+    )
+
+
 def update_block(content: str, start: str, end: str, inner: str) -> str:
     pattern = re.compile(rf"({re.escape(start)})(.*)({re.escape(end)})", re.S)
     if not pattern.search(content):
@@ -91,6 +108,16 @@ def update_block(content: str, start: str, end: str, inner: str) -> str:
 
 def build_cards(tools: list[dict], locale: str) -> str:
     return "\n".join(build_card(t, locale) for t in tools)
+
+
+def select_recent_tools(tools: list[dict], limit: int = 3) -> list[dict]:
+    if limit <= 0:
+        return []
+    return list(reversed(tools[-limit:]))
+
+
+def build_home_highlight_cards(tools: list[dict], locale: str) -> str:
+    return "\n".join(build_home_highlight_card(t, locale) for t in tools)
 
 
 def main() -> None:
@@ -108,7 +135,19 @@ def main() -> None:
     en_html = update_block(en_html, "<!-- TOOLS_CARDS_EN_START -->", "<!-- TOOLS_CARDS_EN_END -->", en_cards)
     TOOLS_EN_HTML.write_text(en_html, encoding="utf-8")
 
-    print("Updated tools.html and tools-en.html from data/tools.json")
+    recent_tools = select_recent_tools(tools, 3)
+    home_cards = build_home_highlight_cards(recent_tools, "ko")
+
+    index_ko_html = INDEX_KO_HTML.read_text(encoding="utf-8")
+    index_ko_html = update_block(
+        index_ko_html,
+        "<!-- HOME_TOOLS_HIGHLIGHT_START -->",
+        "<!-- HOME_TOOLS_HIGHLIGHT_END -->",
+        home_cards,
+    )
+    INDEX_KO_HTML.write_text(index_ko_html, encoding="utf-8")
+
+    print("Updated tools.html, tools-en.html, and index.html from data/tools.json")
 
 
 if __name__ == "__main__":

@@ -1,0 +1,18 @@
+{
+  "videos": [
+    {
+      "title": "Sultans Of Swing",
+      "url": "https://www.youtube.com/watch?v=_q8s93klams&list=RD_q8s93klams&start_radio=1",
+      "thumb": "assets/img/sample.jpg",
+      "date": "2026-02-25",
+      "summary": "좋아하는 곡 테스트 링크"
+    },
+    {
+      "title": "Goodbye - bye",
+      "url": "https://www.youtube.com/watch?v=PiKz3hOjjs4",
+      "thumb": "sample2",
+      "date": "2026-02-25",
+      "summary": "토미오카 아이 goodbye bye"
+    }
+  ]
+}
