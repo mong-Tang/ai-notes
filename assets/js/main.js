@@ -10,6 +10,12 @@ function resolvePreferredLang() {
   return (document.documentElement.lang || '').toLowerCase().startsWith('en') ? 'en' : 'ko';
 }
 
+function buildLangFlagHtml(base, nextLang) {
+  var code = nextLang === 'en' ? 'us' : 'kr';
+  var alt = nextLang === 'en' ? 'Switch to English' : 'Switch to Korean';
+  return '<img class="lang-flag-icon" src="' + base + '/assets/img/flag-' + code + '.png" alt="' + alt + '" />';
+}
+
 // Shared navigation injection (no frames)
 (function initSharedNav() {
   var mount = document.getElementById('site-nav');
@@ -24,8 +30,10 @@ function resolvePreferredLang() {
   var youtubePath = 'youtube.html' + langQuery;
   var labPath = 'posts/labs.html' + langQuery;
   var labels = isEn
-    ? { home: 'Home', lab: 'Lab', tools: 'Tools', youtube: 'YouTube', about: 'About', toggle: 'Language toggle', flag: '\uD83C\uDDF0\uD83C\uDDF7' }
-    : { home: 'Home', lab: 'Lab', tools: 'Tools', youtube: 'YouTube', about: 'About', toggle: '\uC5B8\uC5B4 \uC804\uD658', flag: '\uD83C\uDDFA\uD83C\uDDF8' };
+    ? { home: 'Home', lab: 'Lab', tools: 'Tools', youtube: 'YouTube', about: 'About', toggle: 'Language toggle' }
+    : { home: 'Home', lab: 'Lab', tools: 'Tools', youtube: 'YouTube', about: 'About', toggle: '\uC5B8\uC5B4 \uC804\uD658' };
+  var nextLangForButton = isEn ? 'ko' : 'en';
+  var flagHtml = buildLangFlagHtml(base, nextLangForButton);
 
   function href(path) {
     return base + '/' + path;
@@ -41,7 +49,7 @@ function resolvePreferredLang() {
           '<a href="' + href(toolsPath) + '" data-nav-key="tools">' + labels.tools + '</a>' +
           '<a href="' + href(youtubePath) + '" data-nav-key="youtube">' + labels.youtube + '</a>' +
           '<a href="' + href(aboutPath) + '" data-nav-key="about">' + labels.about + '</a>' +
-          '<a id="lang-toggle" href="#" aria-label="' + labels.toggle + '">' + labels.flag + '</a>' +
+          '<a id="lang-toggle" data-base="' + base + '" href="#" aria-label="' + labels.toggle + '">' + flagHtml + '</a>' +
         '</div>' +
       '</div>' +
     '</nav>';
@@ -85,11 +93,12 @@ function resolvePreferredLang() {
   var path = window.location.pathname;
   var currentLang = resolvePreferredLang();
   var runtimeI18n = document.documentElement.getAttribute('data-i18n-runtime') === 'true';
+  var base = toggle.getAttribute('data-base') || '.';
 
   // i18n 페이지(labs/youtube): 같은 페이지에서 ?lang 전환
   if (runtimeI18n) {
     var nextLang = currentLang === 'en' ? 'ko' : 'en';
-    toggle.textContent = currentLang === 'en' ? '\uD83C\uDDF0\uD83C\uDDF7' : '\uD83C\uDDFA\uD83C\uDDF8';
+    toggle.innerHTML = buildLangFlagHtml(base, nextLang);
 
     var runtimeUrl = new URL(window.location.href);
     runtimeUrl.searchParams.set('lang', nextLang);
@@ -103,7 +112,7 @@ function resolvePreferredLang() {
   }
 
   // 분리 페이지(index/about/tools): -en.html <-> .html 전환
-  toggle.textContent = currentLang === 'en' ? '\uD83C\uDDF0\uD83C\uDDF7' : '\uD83C\uDDFA\uD83C\uDDF8';
+  toggle.innerHTML = buildLangFlagHtml(base, currentLang === 'en' ? 'ko' : 'en');
 
   var targetPath = path;
   if (/-en\.html$/i.test(path)) {

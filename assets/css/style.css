@@ -64,11 +64,20 @@ body {
   font-size: 0.95rem;
   font-weight: 700;
   letter-spacing: 0.4px;
-  line-height: 1;
+  line-height: 0;
   color: #c7d2fe;
-  background: rgba(199,210,254,0.08);
-  border: 1px solid rgba(199,210,254,0.18);
+  background: transparent;
+  border: 1px solid rgba(199,210,254,0.12);
   border-radius: 6px;
+  padding: 2px 6px;
+}
+.lang-flag-icon {
+  width: 16px;
+  height: 12px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 2px;
+  display: block;
 }
 .nav-links a:hover {
   color: var(--accent-2);
