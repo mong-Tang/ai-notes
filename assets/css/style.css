@@ -153,6 +153,15 @@ body {
 .tools-more-wrap {
   margin: 10px 0 0;
 }
+.inline-notice {
+  margin: 8px 0 0;
+  padding: 8px 10px;
+  border-radius: 10px;
+  border: 1px solid rgba(199,210,254,0.28);
+  background: rgba(199,210,254,0.08);
+  color: #dbeafe;
+  font-size: 0.9rem;
+}
 .container { max-width: 980px; margin: 20px auto; padding: 0 18px; }
 
 /* 전역 링크 가독성 */
@@ -305,14 +314,75 @@ a:focus-visible {
   display: grid;
   grid-template-columns: 120px minmax(0, 1.4fr) minmax(0, 2fr) auto;
   gap: 14px;
-  padding: 8px;
+  align-items: center;
+  padding: 5px 8px;
   border-bottom: 1px solid rgba(255,255,255,0.06);
+  line-height: 1.22;
+  border-radius: 8px;
+  transition: background-color .18s ease, color .18s ease;
+  cursor: pointer;
 }
 .youtube-archive-row:last-child {
   border-bottom: none;
 }
+.youtube-archive-row > span {
+  min-width: 0;
+}
+.youtube-archive-row > span:nth-child(1),
+.youtube-archive-row > span:nth-child(4) {
+  color: var(--muted);
+  font-size: 0.86rem;
+  white-space: nowrap;
+}
+.youtube-archive-row > span:nth-child(2) {
+  color: var(--text);
+  font-weight: 550;
+  font-size: 0.98rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.youtube-archive-row > span:nth-child(3) {
+  color: var(--muted);
+  font-size: 0.9rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 .youtube-archive-row > span:last-child {
   text-align: right;
+}
+.youtube-archive-row > span:last-child a {
+  display: inline-block;
+  text-decoration: none;
+  padding: 3px 8px;
+  border-radius: 8px;
+  border: 1px solid rgba(165,216,255,0.35);
+  background: rgba(165,216,255,0.08);
+  color: #dbeafe;
+  font-weight: 600;
+}
+.youtube-archive-row > span:last-child a:hover {
+  background: rgba(165,216,255,0.16);
+  color: #eff6ff;
+}
+.youtube-archive-row > span:last-child a:active {
+  background: rgba(165,216,255,0.24);
+  border-color: rgba(165,216,255,0.5);
+}
+.youtube-archive-row:hover {
+  background: rgba(159,176,216,0.14);
+  color: var(--text);
+}
+.youtube-archive-row:active {
+  background: rgba(159,176,216,0.22);
+}
+.youtube-archive-row:hover > span,
+.youtube-archive-row:hover > span:nth-child(2),
+.youtube-archive-row:hover > span:nth-child(3),
+.youtube-archive-row:hover > span:nth-child(4),
+.youtube-archive-row:hover a {
+  color: var(--text);
 }
 .post-row {
   display: grid;
@@ -382,6 +452,14 @@ a:focus-visible {
   .post-row:hover .post-summary,
   .post-row:hover .post-meta,
   .post-row:hover .post-title {
+    color: inherit;
+  }
+  .youtube-archive-row:hover {
+    background: transparent;
+    color: inherit;
+  }
+  .youtube-archive-row:hover > span,
+  .youtube-archive-row:hover a {
     color: inherit;
   }
 }

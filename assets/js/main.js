@@ -195,3 +195,46 @@
 
   doc.parentNode.insertBefore(bridge, doc);
 })();
+
+// YouTube 아카이브: 행 클릭 시 "보기" 링크로 이동
+(function initYoutubeArchiveRowClick() {
+  var rows = document.querySelectorAll('.youtube-archive-row');
+  if (!rows.length) return;
+
+  rows.forEach(function (row) {
+    var viewLink = row.querySelector('span:last-child a');
+    if (!viewLink) return;
+
+    row.setAttribute('role', 'link');
+    row.setAttribute('tabindex', '0');
+
+    row.addEventListener('click', function (e) {
+      if (e.target && e.target.closest('a')) return;
+      viewLink.click();
+    });
+
+    row.addEventListener('keydown', function (e) {
+      if (e.key !== 'Enter' && e.key !== ' ') return;
+      e.preventDefault();
+      viewLink.click();
+    });
+  });
+})();
+
+// YouTube 채널 버튼: 준비중 안내
+(function initYoutubeChannelNotice() {
+  var link = document.getElementById('youtube-channel-link');
+  var notice = document.getElementById('youtube-channel-notice');
+  if (!link || !notice) return;
+
+  var hideTimer = null;
+
+  link.addEventListener('click', function (e) {
+    e.preventDefault();
+    notice.hidden = false;
+    if (hideTimer) clearTimeout(hideTimer);
+    hideTimer = setTimeout(function () {
+      notice.hidden = true;
+    }, 3000);
+  });
+})();
