@@ -1,12 +1,12 @@
 <!doctype html>
-<html lang="ko">
+<html lang="ko" data-i18n-runtime="true">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="icon" href="favicon.ico" sizes="any" />
   <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32.png" />
   <link rel="apple-touch-icon" href="assets/favicon/favicon-180.png" />
-  <title>YouTube</title>
+  <title data-i18n="youtube.meta.title">YouTube</title>
   <link rel="stylesheet" href="assets/css/style.css" />
 </head>
 <body>
@@ -14,16 +14,16 @@
 
   <header class="site-header">
     <div class="header-inner">
-      <h1>AI YouTube</h1>
-      <p class="subtitle">AI 실험과 도구 결과를 영상으로 정리해 공유합니다.</p>
+      <h1 data-i18n="youtube.header.title">AI YouTube</h1>
+      <p class="subtitle" data-i18n="youtube.header.subtitle">AI 실험과 도구 결과를 영상으로 정리해 공유합니다.</p>
     </div>
   </header>
 
   <main class="container">
     <section id="youtube-latest" class="card">
-      <h2>올린 영상 목록</h2>
-      <p>최신 영상부터 정리합니다.</p>
-      <p class="youtube-notice">※ 영상 재생 전/중간 광고는 YouTube 정책에 따라 표시될 수 있으며, 본 사이트가 직접 삽입하는 광고가 아닙니다.</p>
+      <h2 data-i18n="youtube.latest.title">올린 영상 목록</h2>
+      <p data-i18n="youtube.latest.description">최신 영상부터 정리합니다.</p>
+      <p class="youtube-notice" data-i18n="youtube.latest.notice">※ 영상 재생 전/중간 광고는 YouTube 정책에 따라 표시될 수 있으며, 본 사이트가 직접 삽입하는 광고가 아닙니다.</p>
       <div class="youtube-list-grid">
         <!-- YOUTUBE_LATEST_CARDS_START -->
 <article class="mini-card">
@@ -51,12 +51,12 @@
     </section>
 
     <section id="youtube-archive" class="card">
-      <h2>영상 아카이브</h2>
+      <h2 data-i18n="youtube.archive.title">영상 아카이브</h2>
       <div class="youtube-archive-header">
-        <span>날짜</span>
-        <span>제목</span>
-        <span>요약</span>
-        <span>영상보기</span>
+        <span data-i18n="youtube.archive.header.date">날짜</span>
+        <span data-i18n="youtube.archive.header.title">제목</span>
+        <span data-i18n="youtube.archive.header.summary">요약</span>
+        <span data-i18n="youtube.archive.header.watch">영상보기</span>
       </div>
       <div class="youtube-archive-list">
         <!-- YOUTUBE_ARCHIVE_ROWS_START -->
@@ -77,29 +77,29 @@
     </section>
 
     <section id="youtube-in-progress" class="card">
-      <h2>작업 중인 내용</h2>
+      <h2 data-i18n="youtube.progress.title">작업 중인 내용</h2>
       <!-- YOUTUBE_IN_PROGRESS_START -->
       <div class="manual-text-box">
-        <p>실험 로그를 3~5분 영상 스크립트로 변환하는 템플릿을 정리하고 있습니다.</p>
-        <p>썸네일/제목/요약 입력 규칙을 단순화해 등록 시간을 줄이고 있습니다.</p>
-        <p>업로드 전 체크리스트(소리, 자막, 링크) 운영을 정착시키는 중입니다.</p>
+        <p data-i18n="youtube.progress.p1">실험 로그를 3~5분 영상 스크립트로 변환하는 템플릿을 정리하고 있습니다.</p>
+        <p data-i18n="youtube.progress.p2">썸네일/제목/요약 입력 규칙을 단순화해 등록 시간을 줄이고 있습니다.</p>
+        <p data-i18n="youtube.progress.p3">업로드 전 체크리스트(소리, 자막, 링크) 정리도 함께 진행 중입니다.</p>
       </div>
       <!-- YOUTUBE_IN_PROGRESS_END -->
     </section>
 
     <section id="youtube-roadmap" class="card">
-      <h2>앞으로의 방향</h2>
+      <h2 data-i18n="youtube.roadmap.title">앞으로의 방향</h2>
       <!-- YOUTUBE_ROADMAP_START -->
       <div class="manual-text-box">
-        <p>단기: 최신 실험 1개를 주 1회 영상으로 전환합니다.</p>
-        <p>중기: 실험/툴/회고 3개 트랙으로 재생목록을 분리합니다.</p>
-        <p>장기: 누적 글 기반의 시리즈형 영상 운영으로 확장합니다.</p>
+        <p data-i18n="youtube.roadmap.p1">단기: 최신 실험 1개를 주 1회 영상으로 전환합니다.</p>
+        <p data-i18n="youtube.roadmap.p2">중기: 실험/툴/회고 3개 트랙으로 재생목록을 분리합니다.</p>
+        <p data-i18n="youtube.roadmap.p3">장기: 누적 글 기반의 시리즈형 영상 운영으로 확장합니다.</p>
       </div>
       <!-- YOUTUBE_ROADMAP_END -->
       <p class="tools-more-wrap">
-        <a id="youtube-channel-link" class="cta-button cta-compact" href="#" aria-disabled="true">내 YouTube 채널 가기 (준비중)</a>
+        <a id="youtube-channel-link" class="cta-button cta-compact" href="#" aria-disabled="true" data-i18n="youtube.channel.button">내 YouTube 채널 가기 (준비중)</a>
       </p>
-      <p id="youtube-channel-notice" class="inline-notice" role="status" aria-live="polite" hidden>유튜브 채널은 현재 공사중입니다. 준비가 완료되면 오픈하겠습니다.</p>
+      <p id="youtube-channel-notice" class="inline-notice" role="status" aria-live="polite" hidden data-i18n="youtube.channel.notice">유튜브 채널은 현재 공사중입니다. 준비가 완료되면 오픈하겠습니다.</p>
     </section>
   </main>
 
@@ -108,6 +108,6 @@
       <p>© 2026 <a href="https://github.com/mong-Tang" target="_blank" rel="noopener noreferrer">My Hobby</a></p>
     </div>
   </footer>
-  <script src="assets/js/main.js?v=20260223"></script>
+  <script src="assets/js/main.js?v=20260225"></script>
 </body>
 </html>

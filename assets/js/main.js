@@ -1,14 +1,28 @@
+function resolvePreferredLang() {
+  var params = new URLSearchParams(window.location.search);
+  var queryLang = (params.get('lang') || '').toLowerCase();
+  if (queryLang === 'ko' || queryLang === 'en') return queryLang;
+
+  var path = window.location.pathname;
+  if (/-en\.html$/i.test(path)) return 'en';
+  if (/-ko\.html$/i.test(path)) return 'ko';
+
+  return (document.documentElement.lang || '').toLowerCase().startsWith('en') ? 'en' : 'ko';
+}
+
 // Shared navigation injection (no frames)
 (function initSharedNav() {
   var mount = document.getElementById('site-nav');
   if (!mount) return;
 
   var base = mount.getAttribute('data-base') || '.';
-  var isEn = (document.documentElement.lang || '').toLowerCase().startsWith('en');
+  var isEn = resolvePreferredLang() === 'en';
+  var langQuery = isEn ? '?lang=en' : '';
   var homePath = isEn ? 'index-en.html' : 'index.html';
   var aboutPath = isEn ? 'about-en.html' : 'about.html';
   var toolsPath = isEn ? 'tools-en.html' : 'tools.html';
-  var youtubePath = 'youtube.html';
+  var youtubePath = 'youtube.html' + langQuery;
+  var labPath = 'posts/labs.html' + langQuery;
   var labels = isEn
     ? { home: 'Home', lab: 'Lab', tools: 'Tools', youtube: 'YouTube', about: 'About', toggle: 'Language toggle', flag: '\uD83C\uDDF0\uD83C\uDDF7' }
     : { home: 'Home', lab: 'Lab', tools: 'Tools', youtube: 'YouTube', about: 'About', toggle: '\uC5B8\uC5B4 \uC804\uD658', flag: '\uD83C\uDDFA\uD83C\uDDF8' };
@@ -23,7 +37,7 @@
         '<div class="brand">mongTang</div>' +
         '<div class="nav-links">' +
           '<a href="' + href(homePath) + '" data-nav-key="home">' + labels.home + '</a>' +
-          '<a href="' + href('posts/labs.html') + '" data-nav-key="lab">' + labels.lab + '</a>' +
+          '<a href="' + href(labPath) + '" data-nav-key="lab">' + labels.lab + '</a>' +
           '<a href="' + href(toolsPath) + '" data-nav-key="tools">' + labels.tools + '</a>' +
           '<a href="' + href(youtubePath) + '" data-nav-key="youtube">' + labels.youtube + '</a>' +
           '<a href="' + href(aboutPath) + '" data-nav-key="about">' + labels.about + '</a>' +
@@ -69,24 +83,33 @@
   if (!toggle) return;
 
   var path = window.location.pathname;
-  var isEn = /-en\.html$/i.test(path);
-  var isKo = /-ko\.html$/i.test(path);
-  var current = isEn ? 'en' : 'ko';
+  var currentLang = resolvePreferredLang();
+  var runtimeI18n = document.documentElement.getAttribute('data-i18n-runtime') === 'true';
+
+  // i18n 페이지(labs/youtube): 같은 페이지에서 ?lang 전환
+  if (runtimeI18n) {
+    var nextLang = currentLang === 'en' ? 'ko' : 'en';
+    toggle.textContent = currentLang === 'en' ? '\uD83C\uDDF0\uD83C\uDDF7' : '\uD83C\uDDFA\uD83C\uDDF8';
+
+    var runtimeUrl = new URL(window.location.href);
+    runtimeUrl.searchParams.set('lang', nextLang);
+    toggle.href = runtimeUrl.pathname + runtimeUrl.search + runtimeUrl.hash;
+
+    toggle.addEventListener('click', function (e) {
+      e.preventDefault();
+      window.location.href = runtimeUrl.pathname + runtimeUrl.search + runtimeUrl.hash;
+    });
+    return;
+  }
+
+  // 분리 페이지(index/about/tools): -en.html <-> .html 전환
+  toggle.textContent = currentLang === 'en' ? '\uD83C\uDDF0\uD83C\uDDF7' : '\uD83C\uDDFA\uD83C\uDDF8';
 
   var targetPath = path;
-  var fallbackPath = null;
-
-  if (current === 'ko') {
-    toggle.textContent = '\uD83C\uDDFA\uD83C\uDDF8';
-    if (isKo) {
-      targetPath = path.replace(/-ko\.html$/i, '-en.html');
-    } else if (/\.html$/i.test(path)) {
-      targetPath = path.replace(/\.html$/i, '-en.html');
-    }
-  } else {
-    toggle.textContent = '\uD83C\uDDF0\uD83C\uDDF7';
-    targetPath = path.replace(/-en\.html$/i, '-ko.html');
-    fallbackPath = path.replace(/-en\.html$/i, '.html');
+  if (/-en\.html$/i.test(path)) {
+    targetPath = path.replace(/-en\.html$/i, '.html');
+  } else if (/\.html$/i.test(path)) {
+    targetPath = path.replace(/\.html$/i, '-en.html');
   }
 
   toggle.href = targetPath + window.location.search + window.location.hash;
@@ -102,26 +125,11 @@
 
   toggle.addEventListener('click', async function (e) {
     e.preventDefault();
-
     if (await exists(targetPath)) {
-      window.location.href = targetPath;
+      window.location.href = targetPath + window.location.search + window.location.hash;
       return;
     }
-
-    // ??(B): ?? ?? ???? ??? ???? ?? fallback ??
-    if (current === 'ko' && /^https?:/i.test(window.location.href)) {
-      var translated = 'https://translate.google.com/translate?sl=ko&tl=en&u='
-        + encodeURIComponent(window.location.href);
-      window.location.href = translated;
-      return;
-    }
-
-    if (fallbackPath && await exists(fallbackPath)) {
-      window.location.href = fallbackPath;
-      return;
-    }
-
-    alert(current === 'ko'
+    alert(currentLang === 'ko'
       ? '\uC601\uBB38 \uD398\uC774\uC9C0 \uC900\uBE44 \uC911\uC785\uB2C8\uB2E4.'
       : '\uD55C\uAE00 \uD398\uC774\uC9C0 \uC900\uBE44 \uC911\uC785\uB2C8\uB2E4.');
   });
@@ -219,6 +227,43 @@
       viewLink.click();
     });
   });
+})();
+
+// 페이지 문구 i18n 치환 (파일럿: data-i18n-runtime=true 페이지)
+(function initPageI18n() {
+  if (document.documentElement.getAttribute('data-i18n-runtime') !== 'true') return;
+
+  var lang = resolvePreferredLang();
+  document.documentElement.lang = lang;
+
+  var base = /\/posts\//i.test(window.location.pathname) ? '..' : '.';
+  var file = base + '/data/i18n/' + lang + '.json';
+  var fallback = base + '/data/i18n/ko.json';
+
+  function applyDict(dict) {
+    var nodes = document.querySelectorAll('[data-i18n]');
+    nodes.forEach(function (el) {
+      var key = el.getAttribute('data-i18n');
+      if (!key) return;
+      if (Object.prototype.hasOwnProperty.call(dict, key)) {
+        el.textContent = dict[key];
+      }
+    });
+  }
+
+  fetch(file, { cache: 'no-store' })
+    .then(function (res) {
+      if (!res.ok) throw new Error('i18n not found');
+      return res.json();
+    })
+    .then(applyDict)
+    .catch(function () {
+      if (file === fallback) return;
+      fetch(fallback, { cache: 'no-store' })
+        .then(function (res) { return res.ok ? res.json() : {}; })
+        .then(applyDict)
+        .catch(function () {});
+    });
 })();
 
 // YouTube 채널 버튼: 준비중 안내

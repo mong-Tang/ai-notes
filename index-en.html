@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -14,18 +14,24 @@
 
 <header class="site-header">
     <div class="header-inner">
-      <h1>AI Experiment Logbook</h1>
-      <p class="subtitle">I run hands-on experiments in automation, organization, and content creation, then record both outcomes and limits clearly.</p>
+      <h1>mongTang AI</h1>
+      <section class="about-hero-card">
+        <img src="assets/img/about-mongtang.png" alt="mongTang character" />
+        <div class="about-hero-text">
+          <p>This site is a record hub for preparing an AI YouTube channel as a hobby project. I build up materials first, then expand into videos when enough content accumulates.</p>
+          <a class="about-hero-link" href="about-en.html">View detailed introduction</a>
+        </div>
+      </section>
+      <div class="hero-actions">
+        <a class="cta-button cta-compact" href="#latest">View recent experiments</a>
+        <a class="cta-button cta-compact" href="tools-en.html">View project tools</a>
+      </div>
     </div>
   </header>
 
   <main class="container">
-    <section class="intro card">
-      <h2>About</h2>
-      <p>This is a personal lab note that prioritizes consistent records over page views. For each experiment, I document goal, input, result, and limitations, then share only reusable methods.</p>
-    </section>
-
-    <section class="latest card">
+    <section id="latest" class="latest card">
+      <h2>Recent Experiments (Lab)</h2>
       <div class="post-header">
         <span>Title</span>
         <span>Summary</span>
@@ -57,14 +63,76 @@
 <!-- POSTS_LATEST_END -->
       </ul>
     </section>
+
+    <section id="tools" class="card">
+      <h2>Tools Highlights</h2>
+      <div class="mini-grid">
+        <!-- HOME_TOOLS_HIGHLIGHT_START -->
+<article class="mini-card">
+  <h3>d_View</h3>
+  <p>Reader</p>
+  <div class="tool-links"><a href="https://github.com/mong-Tang/d_View/releases/download/v0.1.0/mongTang-win32-x64.zip" target="_blank" rel="noopener noreferrer">Download</a> <a href="https://github.com/mong-Tang/d_View/releases" target="_blank" rel="noopener noreferrer">Source</a></div>
+</article>
+<article class="mini-card">
+  <h3>Post Watcher</h3>
+  <p>A helper tool that monitors post file changes and automates repetitive generation tasks.</p>
+  <div class="tool-links"><a href="https://github.com/mong-Tang/ai-notes/tree/main/scripts/watch_posts.py" target="_blank" rel="noopener noreferrer">View Source</a></div>
+</article>
+<article class="mini-card">
+  <h3>Markdown → Post Builder</h3>
+  <p>A builder that converts Markdown notes into HTML posts and updates the list.</p>
+  <div class="tool-links"><a href="https://github.com/mong-Tang/ai-notes/tree/main/scripts/post_generate.py" target="_blank" rel="noopener noreferrer">View Source</a></div>
+</article>
+        <!-- HOME_TOOLS_HIGHLIGHT_END -->
+      </div>
+      <p class="tools-more-wrap">
+        <a class="cta-button cta-compact" href="tools-en.html">View all Tools</a>
+      </p>
+    </section>
+
+    <section id="youtube" class="card">
+      <h2>YouTube (Coming Soon)</h2>
+      <p>Latest videos are organized first.</p>
+      <div class="youtube-grid">
+        <!-- HOME_YOUTUBE_CARDS_START -->
+<article class="mini-card">
+  <a href="https://www.youtube.com/watch?v=_q8s93klams&amp;list=RD_q8s93klams&amp;start_radio=1" target="_blank" rel="noopener noreferrer">
+    <span class="youtube-thumb-wrap">
+      <img class="youtube-thumb" src="assets/img/sample.jpg" alt="Video 1 thumbnail" />
+    </span>
+  </a>
+  <p><a href="https://www.youtube.com/watch?v=_q8s93klams&amp;list=RD_q8s93klams&amp;start_radio=1" target="_blank" rel="noopener noreferrer">Sultans Of Swing</a></p>
+</article>
+<article class="mini-card">
+  <a href="https://www.youtube.com/watch?v=PiKz3hOjjs4" target="_blank" rel="noopener noreferrer">
+    <span class="youtube-thumb-wrap">
+      <img class="youtube-thumb" src="assets/img/sample2.jpg" alt="Video 2 thumbnail" />
+    </span>
+  </a>
+  <p><a href="https://www.youtube.com/watch?v=PiKz3hOjjs4" target="_blank" rel="noopener noreferrer">Goodbye - bye</a></p>
+</article>
+      <!-- HOME_YOUTUBE_CARDS_END -->
+      </div>
+      <p class="tools-more-wrap">
+        <a class="cta-button cta-compact" href="youtube.html?lang=en">Open YouTube page</a>
+      </p>
+    </section>
+
+    <section class="card">
+      <h2>This Week's Progress</h2>
+      <div class="status-grid">
+        <div><strong>Done</strong><p>Stabilized mobile layout and organized the default navigation menu.</p></div>
+        <div><strong>In Progress</strong><p>Fixing the home section structure and refining data accumulation flow.</p></div>
+        <div><strong>Next</strong><p>Add more experiment posts and organize the Tools archive.</p></div>
+      </div>
+    </section>
   </main>
 
   <footer class="site-footer">
     <div class="footer-inner">
-      <p>© 2026 My Hobby</p>
+      <p>© 2026 <a href="https://github.com/mong-Tang" target="_blank" rel="noopener noreferrer">My Hobby</a></p>
     </div>
   </footer>
-
   <script src="assets/js/main.js?v=20260223"></script>
 </body>
 </html>
