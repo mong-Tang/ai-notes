@@ -1,4 +1,4 @@
-import html
+﻿import html
 import json
 import re
 from pathlib import Path
@@ -8,6 +8,7 @@ ROOT = Path(__file__).resolve().parents[1]
 DATA_FILE = ROOT / "data" / "youtube.json"
 YOUTUBE_HTML = ROOT / "youtube.html"
 INDEX_HTML = ROOT / "index.html"
+INDEX_EN_HTML = ROOT / "index-en.html"
 DEFAULT_THUMB_DIR = "assets/img"
 
 
@@ -85,6 +86,7 @@ def build_home_cards(videos: list[dict], limit: int = 2) -> str:
             "    </span>\n"
             "  </a>\n"
             f"  <p><a href=\"{html.escape(v['url'], quote=True)}\" target=\"_blank\" rel=\"noopener noreferrer\">{html.escape(v['title'])}</a></p>\n"
+            f"  <p>{html.escape(v['summary'] or '요약 없음')}</p>\n"
             "</article>"
         )
     return "\n".join(cards)
@@ -108,7 +110,7 @@ def build_archive_rows(videos: list[dict]) -> str:
 
 
 def main() -> None:
-    data = json.loads(DATA_FILE.read_text(encoding="utf-8"))
+    data = json.loads(DATA_FILE.read_text(encoding="utf-8-sig"))
     videos = normalize_videos(data)
 
     latest_cards = build_latest_cards(videos, 2)
@@ -116,30 +118,19 @@ def main() -> None:
     archive_rows = build_archive_rows(videos)
 
     content = YOUTUBE_HTML.read_text(encoding="utf-8")
-    content = update_block(
-        content,
-        "<!-- YOUTUBE_LATEST_CARDS_START -->",
-        "<!-- YOUTUBE_LATEST_CARDS_END -->",
-        latest_cards,
-    )
-    content = update_block(
-        content,
-        "<!-- YOUTUBE_ARCHIVE_ROWS_START -->",
-        "<!-- YOUTUBE_ARCHIVE_ROWS_END -->",
-        archive_rows,
-    )
+    content = update_block(content, "<!-- YOUTUBE_LATEST_CARDS_START -->", "<!-- YOUTUBE_LATEST_CARDS_END -->", latest_cards)
+    content = update_block(content, "<!-- YOUTUBE_ARCHIVE_ROWS_START -->", "<!-- YOUTUBE_ARCHIVE_ROWS_END -->", archive_rows)
     YOUTUBE_HTML.write_text(content, encoding="utf-8")
 
     index_content = INDEX_HTML.read_text(encoding="utf-8")
-    index_content = update_block(
-        index_content,
-        "<!-- HOME_YOUTUBE_CARDS_START -->",
-        "<!-- HOME_YOUTUBE_CARDS_END -->",
-        home_cards,
-    )
+    index_content = update_block(index_content, "<!-- HOME_YOUTUBE_CARDS_START -->", "<!-- HOME_YOUTUBE_CARDS_END -->", home_cards)
     INDEX_HTML.write_text(index_content, encoding="utf-8")
 
-    print("Updated youtube.html and index.html from data/youtube.json")
+    index_en_content = INDEX_EN_HTML.read_text(encoding="utf-8")
+    index_en_content = update_block(index_en_content, "<!-- HOME_YOUTUBE_CARDS_START -->", "<!-- HOME_YOUTUBE_CARDS_END -->", home_cards)
+    INDEX_EN_HTML.write_text(index_en_content, encoding="utf-8")
+
+    print("Updated youtube.html, index.html, and index-en.html from data/youtube.json")
 
 
 if __name__ == "__main__":

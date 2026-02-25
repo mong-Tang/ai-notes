@@ -1,4 +1,4 @@
-import json
+﻿import json
 import subprocess
 import sys
 from pathlib import Path
@@ -22,6 +22,15 @@ def ask(prompt: str, default: str | None = None, required: bool = False) -> str:
         if not required:
             return ""
         print("값이 필요합니다. 다시 입력해 주세요.")
+
+
+def ask_choice(prompt: str, choices: tuple[str, ...], default: str) -> str:
+    allowed = "/".join(choices)
+    while True:
+        value = ask(f"{prompt} ({allowed})", default=default, required=True).lower()
+        if value in choices:
+            return value
+        print(f"허용값: {allowed}")
 
 
 def ask_yes_no(prompt: str, default_yes: bool = True) -> bool:
@@ -84,7 +93,7 @@ def pick_asset_from_list(assets: list[str]) -> str:
     if not assets:
         return ask("asset 파일명", required=True)
 
-    print("\n발견한 asset 목록:")
+    print("\n발견된 asset 목록:")
     for i, a in enumerate(assets, start=1):
         print(f"  {i}. {a}")
 
@@ -174,6 +183,10 @@ def prompt_dev_path(repo: str) -> str:
             raise SystemExit("작업을 중단했습니다.")
 
 
+def infer_default_type(audience: str) -> str:
+    return "deploy" if audience == "user" else "script"
+
+
 def main() -> None:
     print("=== Tool 등록 도우미 ===")
     print("입력 후 tools.json 저장 + tools 페이지 자동 생성까지 진행합니다.\n")
@@ -184,26 +197,30 @@ def main() -> None:
     name = ask("툴 이름(name)", required=True)
     repo = prompt_repo(name)
 
-    audience = ask("대상 audience (user/dev)", default="user", required=True).lower()
-    while audience not in ("user", "dev"):
-        print("user 또는 dev만 입력 가능합니다.")
-        audience = ask("대상 audience (user/dev)", default="user", required=True).lower()
+    audience = ask_choice("대상 audience", ("user", "dev"), default="user")
+    tool_type = ask_choice("타입 type", ("deploy", "script", "other"), default=infer_default_type(audience))
 
     desc_ko = ask("한글 설명(desc_ko)", required=True)
     desc_en = ask("영문 설명(desc_en, 비우면 desc_ko 사용)", default="")
 
-    entry = {"name": name, "repo": repo, "audience": audience, "desc_ko": desc_ko}
+    entry = {
+        "name": name,
+        "repo": repo,
+        "audience": "user" if tool_type == "deploy" else "dev",
+        "type": tool_type,
+        "desc_ko": desc_ko,
+    }
     if desc_en:
         entry["desc_en"] = desc_en
 
-    if audience == "user":
+    if tool_type == "deploy":
         tag, asset = prompt_user_release(repo)
         entry["tag"] = tag
         entry["asset"] = asset
     else:
         entry["path"] = prompt_dev_path(repo)
 
-    if ask_yes_no("상태(status)와 버튼 라벨(label)을 직접 지정할까요?", default_yes=False):
+    if ask_yes_no("상태(status)/버튼(label)을 직접 지정할까요?", default_yes=False):
         for key in ("status_ko", "status_en", "label_ko", "label_en"):
             v = ask(key, default="")
             if v:
@@ -214,7 +231,7 @@ def main() -> None:
     save_json(data)
     print(f"\nJSON {mode}: {name}")
 
-    print("tools.html / tools-en.html 생성 중...")
+    print("tools/index 페이지 생성 중...")
     subprocess.run([sys.executable, str(GENERATE_SCRIPT)], check=True, cwd=str(ROOT))
     print("완료되었습니다.")
 

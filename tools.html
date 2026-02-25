@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="ko">
 <head>
   <meta charset="utf-8" />
@@ -9,13 +9,13 @@
   <title>Tools - mongTang</title>
   <link rel="stylesheet" href="assets/css/style.css" />
 </head>
-<body>
+<body class="tools-page">
   <div id="site-nav" data-base="."></div>
 
   <header class="site-header">
     <div class="header-inner">
       <h1>mongTang Tools</h1>
-      <p class="subtitle">프로젝트에서 만든 프로그램/도구를 소개하는 페이지입니다. 코드와 릴리스는 GitHub 공식 저장소에서 관리합니다.</p>
+      <p class="subtitle">프로젝트에서 만든 프로그램/도구를 소개하는 페이지입니다. 코드와 릴리즈는 GitHub 저장소에서 관리합니다.</p>
     </div>
   </header>
 
@@ -27,25 +27,15 @@
 
     <section class="card">
       <h2>프로그램 / 도구</h2>
-      <div class="mini-grid">
+      <div class="tools-layout">
         <!-- TOOLS_CARDS_KO_START -->
+<h3 class="tools-subtitle">신규 등록 (최신 3개)</h3>
+<div class="mini-grid">
 <article class="mini-card">
-  <h3>Post Template Generator</h3>
-  <p>새 글 템플릿을 빠르게 만들어 기록 시작 시간을 줄이는 도구입니다.</p>
+  <h3>post template</h3>
+  <p>실천사항</p>
   <p><strong>상태:</strong> 개발중</p>
-  <div class="tool-links"><a href="https://github.com/mong-Tang/ai-notes/tree/main/scripts/post_new.py" target="_blank" rel="noopener noreferrer">소스 보기</a></div>
-</article>
-<article class="mini-card">
-  <h3>Markdown → Post Builder</h3>
-  <p>마크다운 기록을 HTML 포스트로 변환하고 목록을 갱신하는 빌더입니다.</p>
-  <p><strong>상태:</strong> 개발중</p>
-  <div class="tool-links"><a href="https://github.com/mong-Tang/ai-notes/tree/main/scripts/post_generate.py" target="_blank" rel="noopener noreferrer">소스 보기</a></div>
-</article>
-<article class="mini-card">
-  <h3>Post Watcher</h3>
-  <p>포스트 파일 변경을 감시해 반복 생성 작업을 자동화하는 보조 도구입니다.</p>
-  <p><strong>상태:</strong> 개발중</p>
-  <div class="tool-links"><a href="https://github.com/mong-Tang/ai-notes/tree/main/scripts/watch_posts.py" target="_blank" rel="noopener noreferrer">소스 보기</a></div>
+  <div class="tool-links"><a href="https://github.com/mong-Tang/ai-notes/tree/main/docs/POST_TEMPLATE.md" target="_blank" rel="noopener noreferrer">소스 보기</a></div>
 </article>
 <article class="mini-card">
   <h3>d_View</h3>
@@ -53,6 +43,37 @@
   <p><strong>상태:</strong> 배포중</p>
   <div class="tool-links"><a href="https://github.com/mong-Tang/d_View/releases/download/v0.1.0/mongTang-win32-x64.zip" target="_blank" rel="noopener noreferrer">다운로드</a> <a href="https://github.com/mong-Tang/d_View/releases" target="_blank" rel="noopener noreferrer">출처 보기</a></div>
 </article>
+<article class="mini-card">
+  <h3>Post Watcher</h3>
+  <p>포스트 파일 변경을 감시해 반복 생성 작업을 자동화하는 보조 도구입니다.</p>
+  <p><strong>상태:</strong> 개발중</p>
+  <div class="tool-links"><a href="https://github.com/mong-Tang/ai-notes/tree/main/scripts/watch_posts.py" target="_blank" rel="noopener noreferrer">소스 보기</a></div>
+</article>
+</div>
+<div class="tool-list-section">
+  <h3 class="tools-subtitle">등록 리스트</h3>
+  <div class="tool-reg-header"><span>이름</span><span>설명</span><span>타입</span><span>링크</span></div>
+  <ul class="tool-reg-list">
+<li>
+  <div class="tool-reg-row">
+    <a class="tool-reg-overlay" href="https://github.com/mong-Tang/ai-notes/tree/main/scripts/post_generate.py" target="_blank" rel="noopener noreferrer" aria-label="Markdown → Post Builder"></a>
+    <span class="tool-reg-title">Markdown → Post Builder</span>
+    <span class="tool-reg-summary">마크다운 기록을 HTML 포스트로 변환하고 목록을 갱신하는 빌더입니다.</span>
+    <span class="tool-reg-type">스크립트</span>
+    <span class="tool-reg-actions"></span>
+  </div>
+</li>
+<li>
+  <div class="tool-reg-row">
+    <a class="tool-reg-overlay" href="https://github.com/mong-Tang/ai-notes/tree/main/scripts/post_new.py" target="_blank" rel="noopener noreferrer" aria-label="Post Template Generator"></a>
+    <span class="tool-reg-title">Post Template Generator</span>
+    <span class="tool-reg-summary">새 글 템플릿을 빠르게 만들어 기록 시작 시간을 줄이는 도구입니다.</span>
+    <span class="tool-reg-type">스크립트</span>
+    <span class="tool-reg-actions"></span>
+  </div>
+</li>
+</ul>
+</div>
         <!-- TOOLS_CARDS_KO_END -->
       </div>
     </section>
@@ -82,3 +103,4 @@
   <script src="assets/js/main.js?v=20260223"></script>
 </body>
 </html>
+
